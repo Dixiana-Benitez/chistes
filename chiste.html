@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuck Norris Jokes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #fab194, #580b0b);
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    #contenedor{
+      background: #fa9c9c;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    button {
+      background: #803d07;
+      border: none;
+      padding: 12px 25px;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <h1>Chuck Norris Jokes</h1>
+
+  <div id="contenedor">
+    Haz clic en el botón para ver un chiste de Chuck Norris.
+  </div>
+
+  <button id="btn">Leer chiste</button>
+
+  <script>
+    const Btn = document.getElementById("btn");
+    const contenedor = document.getElementById("contenedor");
+
+    async function getJoke() {
+      try {
+        const response = await fetch("https://api.chucknorris.io/jokes/random");
+        const data = await response.json();
+        contenedor.textContent = data.value;
+      } catch (error) {
+        contenedor.textContent = "Ocurrió un error al obtener el chiste";
+        console.error(error);
+      }
+    }
+
+    Btn.addEventListener("click", getJoke);
+  </script>
+
+</body>
+</html>
